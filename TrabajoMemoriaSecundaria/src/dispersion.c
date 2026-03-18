@@ -123,7 +123,7 @@ int creaHvacio(char *fichHash, regConfig *reg){
 }
 
 int insertar(FILE *fHash, tipoReg *reg, regConfig *regC){
-   aaaa
+   
 }
 
 int desborde(FILE *fHash, tipoReg *reg, regConfig *regC){

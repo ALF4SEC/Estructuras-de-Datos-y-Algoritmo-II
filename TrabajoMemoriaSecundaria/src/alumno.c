@@ -33,11 +33,11 @@ int buscar(char *fichero, char *dni){
 
     strcpy(reg->dni, dni);
 
-    if(resultado=(busquedaHash(fichEntrada, &reg, &pos))==0){
+    if(resultado=(busquedaHash(ficheroEntrada, &reg, &pos))==0){
         mostrarReg(&reg);
     }
 
-    fclose(fichEntrada);
+    fclose(ficheroEntrada);
     return resultado;
 }
 
@@ -55,11 +55,11 @@ int modificar(char *fichero, char *dni, char *provincia){
     strcpy(reg->dni, dni);
     strcpy(reg->provincia, provincia);
 
-    if(resultado=(modificarReg(fichEntrada, &reg, &pos))==0){
+    if(resultado=(modificarReg(ficheroEntrada, &reg, &pos))==0){
         mostrarReg(&reg);
     }
 
-    fclose(fichEntrada);
+    fclose(ficheroEntrada);
     return resultado;
 }
 
