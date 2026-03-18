@@ -91,7 +91,6 @@ int creaHash(char *fichEntrada, char *fichHash, regConfig *regC){
 
 	while(!feof(ficheroEntrada)){
 
-      
 
       fread(&alumno, sizeof(tipoAlumno), 1, ficheroEntrada);
    }
@@ -124,7 +123,7 @@ int creaHvacio(char *fichHash, regConfig *reg){
 }
 
 int insertar(FILE *fHash, tipoReg *reg, regConfig *regC){
-
+   aaaa
 }
 
 int desborde(FILE *fHash, tipoReg *reg, regConfig *regC){
