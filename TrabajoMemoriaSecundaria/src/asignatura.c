@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include <../include/asignatura.h>
-#include <../include/dispersion.h>
+#include "../include/asignatura.h"
+#include "../include/dispersion.h"
 
 int funcionHash(tAsignatura *reg, int nCubos){
     return (atoi(reg->codigo)%nCubo)
