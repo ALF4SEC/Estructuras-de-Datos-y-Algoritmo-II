@@ -77,6 +77,13 @@ void filtradoAscendente(Monticulo *m, int i);
 
 /* Operación crearMonticulo la utilizaremos en ejercicio 2 y en tema de grafos */ 
 
-void crearMonticulo(Monticulo *m);
+void crearMonticulo(Monticulo *m, int n){
+    m->tamanno=n;
 
-void heapsort(Monticulo *m);
+}
+
+void heapsort(Monticulo *m){
+    for(int i=m->tamanno; i>0; i--){
+
+    }
+}
