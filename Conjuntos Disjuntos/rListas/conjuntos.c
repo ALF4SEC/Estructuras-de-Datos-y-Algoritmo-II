@@ -5,12 +5,6 @@
 
 /// Incluir aqui las funciones que implementan las tres operaciones básicas 
 /// en la representación de CONJUNTOS DISJUNTOS mediante LISTAS
-/// ......................................................................
-
-
-
-
-
 void verParticion(particion P)
 { int i;
    tipoCelda *aux;
@@ -36,4 +30,28 @@ void verClaseEquivalencia(tipoElemento x,particion P)
           aux=aux->sig;
         }
     printf("\n\n");
+}
+
+void crea(particion P){
+  
+}
+
+tipoConjunto buscar(tipoElemento x, particion P){
+
+}
+
+// Implementación de operación unir con control de representantes:
+// Si x e y son los representantes de sus clases de equivalencia las unen y devuelven VERDADERO,
+// en otro caso no hace nada y devuelve FALSO
+int unir(tipoConjunto x, tipoConjunto y, particion P){
+
+}
+
+// Funciones proporcionadas
+void verParticion(particion P){
+
+}
+
+void verClaseEquivalencia(tipoElemento x,particion P){
+
 }

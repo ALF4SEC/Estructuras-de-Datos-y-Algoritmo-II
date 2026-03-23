@@ -8,19 +8,18 @@ typedef int tipoConjunto;
 typedef struct tipoCelda {
 	tipoElemento elemento;
 	struct tipoCelda * sig;
-	} tipoCelda;
+} tipoCelda;
 
 
 typedef struct {
 	tipoCelda * primero , *ultimo;
-	} tipoLista;
+} tipoLista;
 
 
 typedef tipoLista particion[MAXIMO];
 
 
 // Funciones a implementar
-
 void crea(particion P);
 
 tipoConjunto buscar(tipoElemento x, particion P);
@@ -28,7 +27,6 @@ tipoConjunto buscar(tipoElemento x, particion P);
 // Implementación de operación unir con control de representantes:
 // Si x e y son los representantes de sus clases de equivalencia las unen y devuelven VERDADERO,
 // en otro caso no hace nada y devuelve FALSO
-
 int unir(tipoConjunto x, tipoConjunto y, particion P);
 
 // Funciones proporcionadas
