@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-int busquedaBinIdx(int expediente, char *dni, FILE *f);
+int busquedaBinIdx(int expediente, char *dni, FILE *f){
 
-int busquedaIdx(int expediente, char *ficheroHash, char *ficheroIndice, tAlumno *reg);
+}
+
+int busquedaIdx(int expediente, char *ficheroHash, char *ficheroIndice, tAlumno *reg){
+    
+}

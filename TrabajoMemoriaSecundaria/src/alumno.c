@@ -3,11 +3,11 @@
 #include "../include/alumno.h"
 #include "../include/dispersion.h"
 
-int funcionHash(tAlumno *reg, int nCubos){
-    return atoi(reg->dni%nCubos);
+int funcionHash(tAlumno *reg, int nCubos) {
+    return atoi(reg->dni) % nCubos;
 }
 
-void mostrarReg(tAlumno *reg){
+void mostrarReg(tAlumno *reg) {
     fprintf(stdout, "DNI: %s\n", reg->dni);
     fprintf(stdout, "Num. Expediente: %d\n", reg->expediente);
     fprintf(stdout, "Nombre: %s\n", reg->nombre);
@@ -16,24 +16,23 @@ void mostrarReg(tAlumno *reg){
     fprintf(stdout, "Provincia: %s\n", reg->provincia);
 }
 
-int cmpClave(tAlumno *reg1, tAlumno *reg2){
-    return (!strcmp(reg1->dni, reg2->dni)); 
+int cmpClave(tAlumno *reg1, tAlumno *reg2) {
+    return (!strcmp(reg1->dni, reg2->dni));
 }
 
-int buscar(char *fichero, char *dni){
+int buscar(char *fichero, char *dni) {
     FILE *ficheroEntrada;
     tPosicion pos;
     tipoReg reg;
     int resultado;
 
-    if((ficheroEntrada=fopen(fichero, "rb"))==NULL){
-        fprintf(stderr, "Error: No se ha podido abrir de manera correcta el del fichero %s\n", fichero);
-        return -1;
+    if ((ficheroEntrada = fopen(fichero, "rb")) == NULL) {
+        return -2;
     }
 
-    strcpy(reg->dni, dni);
+    strcpy(reg.dni, dni);  // corregido: punto en lugar de flecha
 
-    if(resultado=(busquedaHash(ficheroEntrada, &reg, &pos))==0){
+    if ((resultado = busquedaHash(ficheroEntrada, &reg, &pos)) == 0) {
         mostrarReg(&reg);
     }
 
@@ -41,57 +40,43 @@ int buscar(char *fichero, char *dni){
     return resultado;
 }
 
-int modificar(char *fichero, char *dni, char *provincia){
+int modificar(char *fichero, char *dni, char *provincia) {
     FILE *ficheroEntrada;
     tPosicion pos;
     tipoReg reg;
     int resultado;
 
-    if((ficheroEntrada=fopen(fichero, "rb+"))==NULL){
-        fprintf(stderr, "Error: No se ha podido abrir de manera correcta el del fichero %s\n", fichero);
-        return -1;
+    if ((ficheroEntrada = fopen(fichero, "rb+")) == NULL) {
+        return -2;
     }
 
-    strcpy(reg->dni, dni);
-    strcpy(reg->provincia, provincia);
+    strcpy(reg.dni, dni);
 
-    if(resultado=(modificarReg(ficheroEntrada, &reg, &pos))==0){
-        mostrarReg(&reg);
+    if ((resultado = busquedaHash(ficheroEntrada, &reg, &pos)) == 0) {
+        strcpy(reg.provincia, provincia);
+        resultado = modificarReg(ficheroEntrada, &reg, &pos);
     }
 
     fclose(ficheroEntrada);
     return resultado;
 }
 
-void pedirDatos(tAlumno *reg){
-    //Lectura del DNI
+void pedirDatos(tAlumno *reg) {
     fprintf(stdout, "Introduzca el DNI del alumno: ");
     scanf("%8s", reg->dni);
-    puts("");
 
-    //Lectura del numero de expediente
-    fprintf(stdout, "Introduzca el numero de experdiente del alumno: ");
+    fprintf(stdout, "Introduzca el numero de expediente del alumno: ");
     scanf("%d", &reg->expediente);
-    puts("");
 
-    //Lectura del nombre
     fprintf(stdout, "Introduzca el nombre del alumno: ");
-    scanf("%19s", reg->nombre);
-    puts("");
+    scanf("%18s", reg->nombre); 
 
-    //Lectura del apellido1
     fprintf(stdout, "Introduzca el primer apellido del alumno: ");
     scanf("%18s", reg->ape1);
-    puts("");
 
-    //Lectura del apellido2
     fprintf(stdout, "Introduzca el segundo apellido del alumno: ");
     scanf("%18s", reg->ape2);
-    puts("");
 
-    //Lectura de la provincia
     fprintf(stdout, "Introduzca la provincia del alumno: ");
     scanf("%10s", reg->provincia);
-    puts("");
-
 }
