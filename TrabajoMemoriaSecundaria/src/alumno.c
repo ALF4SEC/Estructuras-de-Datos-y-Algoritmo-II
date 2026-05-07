@@ -30,8 +30,8 @@ int buscar(char *fichero, char *dni) {
         return -2;
     }
 
-    strcpy(reg.dni, dni);  // corregido: punto en lugar de flecha
-
+    strcpy(reg.dni, dni);
+    
     if ((resultado = busquedaHash(ficheroEntrada, &reg, &pos)) == 0) {
         mostrarReg(&reg);
     }
