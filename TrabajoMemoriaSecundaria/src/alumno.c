@@ -4,7 +4,7 @@
 #include "../include/dispersion.h"
 
 int funcionHash(tAlumno *reg, int nCubos){
-    return atoi(reg->dni%nCubos);
+    return atoi(reg->dni)%nCubos;
 }
 
 void mostrarReg(tAlumno *reg){
@@ -31,7 +31,7 @@ int buscar(char *fichero, char *dni){
         return -1;
     }
 
-    strcpy(reg->dni, dni);
+    strcpy(reg.dni, dni);
 
     if(resultado=(busquedaHash(ficheroEntrada, &reg, &pos))==0){
         mostrarReg(&reg);
@@ -52,8 +52,8 @@ int modificar(char *fichero, char *dni, char *provincia){
         return -1;
     }
 
-    strcpy(reg->dni, dni);
-    strcpy(reg->provincia, provincia);
+    strcpy(reg.dni, dni);
+    strcpy(reg.provincia, provincia);
 
     if(resultado=(modificarReg(ficheroEntrada, &reg, &pos))==0){
         mostrarReg(&reg);

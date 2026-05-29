@@ -61,12 +61,12 @@ int leeHash(char *fichHash){
 // Funciones a codificar
 // Parte 1. Funciones gen�ricas para la creaci�n de ficheros
 int creaHash(char *fichEntrada, char *fichHash, regConfig *regC){
-   FILE *ficheroEntrada, *ficheroHash;
+   FILE *ficheroEntrada, *ficheroHash=NULL;
    int i;
-   tipoAlumno alumno;
+   tAlumno alumno;
    tipoCubo cubo;
 
-   if((i=creaHvacio(ficheroHash, regC))!=0){
+   if((i=creaHvacio(fichHash, regC))!=0){
       fprintf(stderr, "Error: No se ha podido crear de forma correcta el fichero hash vacio");
       return -2;
    }
@@ -96,12 +96,12 @@ int creaHash(char *fichEntrada, char *fichHash, regConfig *regC){
 		return -2;
 	}
 
-   fread(&alumno, sizeof(tipoAlumno), 1, ficheroEntrada);
+   fread(&alumno, sizeof(tAlumno), 1, ficheroEntrada);
 
 	while(!feof(ficheroEntrada)){
 
 
-      fread(&alumno, sizeof(tipoAlumno), 1, ficheroEntrada);
+      fread(&alumno, sizeof(tAlumno), 1, ficheroEntrada);
    }
 
 }
@@ -110,7 +110,7 @@ int creaHvacio(char *fichHash, regConfig *reg){
    FILE *ficheroHash;
    tipoCubo cubo;
    int j;
-   int numCubos =reg->nCubos+reg->numCubosDes;
+   int numCubos =reg->nCubos+reg->nCubosDes;
 
    memset(&cubo, 0, sizeof(cubo));
 

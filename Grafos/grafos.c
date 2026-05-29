@@ -8,31 +8,12 @@
 #include <stdlib.h>
 #include "cola.h"
 #include "grafos.h"
-/**********************************************
-/ Inicia correctamente directorio de vertices *
-***********************************************/
-void iniciar(tipoGrafo *g)
-{
-}
-void profundidadMejorado(int v_inicio,tipoGrafo *g)
-{
-}
-void amplitudMejorado(int v_inicio,tipoGrafo *g)
-{
-}
-/* Ejercicio 2*/
 
-int ordenTop1(tipoGrafo *grafo)
-{
-}
-int ordenTop2(tipoGrafo *grafo)
-{
-}
 /******************************************************************************/
 /* Recorrido en PROFUNDIDAD de un grafo. ¡CUIDADO! Depende del vertice inicial y del tipo de grafo */
 /*********************************************************************************/
-void profundidad(int v_inicio,tipoGrafo * grafo)
-{ int w;
+void profundidad(int v_inicio,tipoGrafo * grafo){ 
+  int w;
   pArco  p;
   printf("%d ",v_inicio);
   grafo->directorio[v_inicio].alcanzado=1;
@@ -44,11 +25,12 @@ void profundidad(int v_inicio,tipoGrafo * grafo)
     p = p->sig;
   }
 }
+
 /************************************************************************************************/
 /* Recorrido en AMPLITUD de un grafo. ¡CUIDADO! Depende del vertice inicial y del tipo de grafo */
 /************************************************************************************************/
-void amplitud(int v_inicio,tipoGrafo *grafo)
-{ int w;
+void amplitud(int v_inicio,tipoGrafo *grafo){ 
+  int w;
   pArco  p;
   Cola c;
 
@@ -69,11 +51,12 @@ void amplitud(int v_inicio,tipoGrafo *grafo)
   }
 	  
 }
+
 /**********************************************************************************************/
 /* Función auxiliar para ver el contenido de la estructura que representa un grafo en memoria */
 /**********************************************************************************************/
-void verGrafo(tipoGrafo *g)
-{  int i;
+void verGrafo(tipoGrafo *g){  
+  int i;
    pArco p;
 
    printf("\nGrafo  (Orden %d)\n\n",g->orden);
@@ -97,4 +80,74 @@ void verGrafo(tipoGrafo *g)
        printf("\n");
    }
    printf("     +----+----+----+----+----+----+\n\n");
+}
+
+void liberarListas(tipoGrafo *g){
+	pArco aux, elimina;
+
+	for(int i=1; i<=g->orden; i++){
+		aux=g->direcctorio[i]->lista;
+		while(aux!=NULL){
+			elimina=aux;
+			aux=aux->sig;
+			free(elimina);
+		}
+	}
+}
+
+/**********************************************
+/ Inicia correctamente directorio de vertices *
+***********************************************/
+void iniciar(tipoGrafo *g){
+	if(g==NULL){
+		return;
+	} else{
+		for(int i=1; i<=g->orden; i++){
+			g->directorio[i].alcanzado=0;
+			g->directorio[i].gradoEntrada=0;
+			g->directorio[i].ordenTop=0;
+			g->directorio[i].distancia=INF;
+			g->directorio[i].peso=INF;
+			g->directorio[i].anterior=0;
+		}
+	}
+}
+
+void profundidadMejorado(int v_inicio,tipoGrafo *g){
+	int verticeSinMarcar;
+
+	if(g!=NULL || v_inicio>0 && v_inicio<=g->orden){
+		profundidad(v_inicio, g);
+		for(int i=1; i<=g->orden; i++){
+			if(g->direcctorio[i].alcanzado==0){
+				profundidad(i, g);
+			}
+		}
+	} else{
+		fprintf(stderr, "Algo salio mal");
+	}
+}
+
+void amplitudMejorado(int v_inicio,tipoGrafo *g){
+	int verticeSinMarcar;
+
+	if(g!=NULL || v_inicio>0 && v_inicio<=g->orden){
+		amplitud(v_inicio, g);
+		for(int i=1; i<=g->orden; i++){
+			if(g->direcctorio[i].alcanzado==0){
+				amplitud(i, g);
+			}
+		}
+	} else{
+		fprintf(stderr, "Algo salio mal");
+	}
+}
+
+/* Ejercicio 2*/
+int ordenTop1(tipoGrafo *grafo){
+	
+}
+
+int ordenTop2(tipoGrafo *grafo){
+
 }
